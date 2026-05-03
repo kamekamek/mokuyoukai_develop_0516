@@ -1,0 +1,53 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(rm:*)",
+      "Bash(rm -rf ~*)",
+      "Bash(rm -rf .*)",
+      "Bash(sudo:*)",
+      "Bash(rmdir:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read|Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "file=$(echo \"$CLAUDE_TOOL_INPUT\" | jq -r '.file_path // \"\"'); [ -n \"$file\" ] && base=$(basename \"$file\") && echo \"$base\" | grep -qE '^\\.env(\\.|$)' && ! echo \"$base\" | grep -qE '^\\.env\\.example' && printf '{\"decision\":\"block\",\"reason\":\".envファイルへのアクセスはブロックされています\"}' || true"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cmd=$(echo \"$CLAUDE_TOOL_INPUT\" | jq -r '.command // \"\"'); echo \"$cmd\" | grep -qE '(cat|head|tail|less|more).*\\.env' && ! echo \"$cmd\" | grep -qE '\\.env\\.example' && printf '{\"decision\":\"block\",\"reason\":\".envファイルへのアクセスはブロックされています\"}' || true"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash(git add*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "git diff --cached --name-only | grep -E '^\\.env' && echo '🚨 .env をステージしようとしています！' && exit 1 || exit 0"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Ping.aiff"
+          }
+        ]
+      }
+    ]
+  }
+}
