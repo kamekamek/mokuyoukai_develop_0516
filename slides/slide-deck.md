@@ -8,7 +8,7 @@ color: '#f9fafb'
 
 # AI個人開発してみようオフ会
 
-2025.05.17 sat @ Michikusa Office
+2025.05.17 Sun @ Michikusa Office
 
 ---
 
@@ -16,15 +16,20 @@ color: '#f9fafb'
 
 | 時間 | 内容 |
 | --- | --- |
-| 13:00〜13:30 | 講義 + ハンズオン |
-| 13:30〜14:30 | 開発タイム・交流 |
-| 14:30〜15:00 | Vercel解説・作ったもの共有・クロージング |
+| 13:15〜13:45 | 説明 + ハンズオン |
+| 13:45〜14:15 | 開発タイム・交流 |
+| 14:15〜14:45 | デプロイタイム |
+| 14:45〜16:00 | 開発タイム・交流 |
 
 ---
 
 ## 今日のゴール
 
 個人開発する上で自分やユーザーを守るために最低限押さえておくべき考え方を知る
+
+---
+
+# 個人開発の流れ
 
 ---
 
@@ -51,7 +56,7 @@ GitHubはデフォルトでパブリックリポジトリとして作られる�
 プライベートだからといって何を書いても安全ではない。
 APIキーやパスワードはプライベートリポジトリにも置かないのが基本。
 
-![w:700](./repository.png)
+![w:700](./assets/repository.png)
 
 
 ---
@@ -121,7 +126,7 @@ SLACK_BOT_TOKEN=
 
 ## OpenAIのダッシュボード
 
-![w:900](./openai_dashboard.png)
+![w:900](./assets/openai_dashboard.png)
 
 https://platform.openai.com/usage
 
@@ -131,7 +136,7 @@ https://platform.openai.com/usage
 ---
 
 ## 上限の設定(OpenAI)
-![w:900](./limit_dashborad.png)
+![w:900](./assets/limit_dashborad.png)
 https://platform.openai.com/settings/organization/limits
 
 ---
